@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# ╔══════════════════════════════════════════════╗
+# ║   UIM  —  UI Manager / Header File           ║
+# ║   flowmon edition · Colors · Storage         ║
+# ║   Source this file, don't execute directly   ║
+# ╚══════════════════════════════════════════════╝
+
+# ── Colors ─────────────────────────────────────
+OR='\033[38;5;75m'    # sky blue   (main accent)
+OD='\033[38;5;68m'    # steel blue (dim accent)
+GR='\033[38;5;114m'   # green      (done / ok)
+RE='\033[38;5;203m'   # red        (errors)
+BL='\033[38;5;111m'   # periwinkle (running / lang badges)
+GL='\033[38;5;245m'   # grey light (labels / info)
+GY='\033[38;5;240m'   # grey       (tree lines / dividers)
+WH='\033[38;5;255m'   # white      (run IDs)
+WD='\033[38;5;250m'   # white dim  (body text)
+CY='\033[38;5;39m'    # bright blue (prompt arrow)
+BD='\033[1m'
+DM='\033[2m'
+RS='\033[0m'
+
+# ── Storage ─────────────────────────────────────
+DATA="$HOME/.flowterm"
+
+# ── Helpers ─────────────────────────────────────
+ok()   { echo -e "  ${GR}✓${RS}  ${WH}$*${RS}"; }
+err()  { echo -e "  ${RE}✗${RS}  ${RE}$*${RS}"; }
+info() { echo -e "  ${GL}·${RS}  ${WD}$*${RS}"; }
+warn() { echo -e "  ${OD}!${RS}  ${OD}$*${RS}"; }
+
+hdr() {
+  echo ""
+  echo -e "  ${OR}${BD}── $* ${RS}${GY}────────────────────────────────${RS}"
+}
+
+div() { echo -e "  ${GY}${DM}────────────────────────────────────────${RS}"; }
