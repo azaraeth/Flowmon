@@ -232,9 +232,14 @@ cmd_logs() {
   echo ""
 
   if [[ "$status" == "RUNNING" ]]; then
-    info "${BL}live tail${RS}${WD} — press ${OR}Ctrl+C${RS}${WD} to stop following"
+    info "${BL}live tail${RS}${WD} — press ${OR}Ctrl+C${RS}${WD} to return to flowmon"
     echo ""
-    tail -n 40 -f "$log_file"
+    trap 'echo ""; info "stopped following log"; echo ""; trap - INT' INT
+    tail -n 40 -f "$log_file" &
+    local _tail_pid=$!
+    wait $_tail_pid 2>/dev/null
+    trap - INT
+    echo ""
   else
     # show full log with line numbers
     local lineno=0
@@ -472,9 +477,14 @@ cmd_tail() {
   [[ -f "$log_file" ]] || { err "log file not found: $log_file"; return; }
 
   echo ""
-  info "press ${OR}Ctrl+C${RS}${WD} to stop"
+  info "press ${OR}Ctrl+C${RS}${WD} to return to flowmon"
   echo ""
-  tail -n 50 -f "$log_file"
+  trap 'echo ""; info "stopped following log"; echo ""; trap - INT' INT
+  tail -n 50 -f "$log_file" &
+  local _tail_pid=$!
+  wait $_tail_pid 2>/dev/null
+  trap - INT
+  echo ""
 }
 
 # ═══════════════════════════════════════════════
