@@ -136,9 +136,3 @@ $DATA/runs/
 flowmon is a utility within the **Flow-SN** ecosystem — a powerful workflow runner built for Termux on Android where you build pipelines by connecting nodes.
 
 → [View the main Flow-SN repository](https://github.com/azaraeth/Flow-SN)
-
----
-
-## License
-
-See the main [Flow-SN repository](https://github.com/azaraeth/Flow-SN) for license information.
